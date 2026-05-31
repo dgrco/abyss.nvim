@@ -8,7 +8,7 @@ M.colors = {
   bg4        = "#1a1a28",
   bg5        = "#1e1e30",
 
-  fg         = "#faf4ed",
+  fg         = "#e0def4",
   fg1        = "#9996cc",
   fg2        = "#6b6894",
   fg3        = "#3b3960",
@@ -62,7 +62,7 @@ M.colors = {
     bright_blue    = "#3e8fb0",
     bright_magenta = "#c4a7e7",
     bright_cyan    = "#9ccfd8",
-    bright_white   = "#faf4ed",
+    bright_white   = "#e0def4",
   },
 
   none = "NONE",
