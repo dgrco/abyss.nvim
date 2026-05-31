@@ -5,7 +5,7 @@ local M = {}
 
 M.colors = {
   -- Backgrounds
-  bg         = "#0a0a0f",
+  bg         = "#000000",
   bg1        = "#0d0d14",   -- statusline, tabline
   bg2        = "#101018",   -- float / popup bg
   bg3        = "#13131e",   -- visual, cursorline
