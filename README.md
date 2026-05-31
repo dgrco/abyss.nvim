@@ -1,21 +1,6 @@
 # abyss.nvim
 
-A deep-void Neovim colorscheme. Pure black background, warm gold strings, cool accent highlights — rose-pine moon energy with its own personality.
-
-## Palette
-
-| Role | Color | Hex |
-|---|---|---|
-| Background | near-black | `#0a0a0f` |
-| Strings | warm gold | `#d4a84b` |
-| Keywords | soft purple | `#c888f0` |
-| Functions | sky blue | `#7ed4f8` |
-| Types | teal | `#5dd6c0` |
-| Attributes/decorators | rose | `#f87ba8` |
-| Numbers/booleans | peach | `#f0a880` |
-| Constants | light blue | `#b8d8f8` |
-| Comments | deep indigo | `#3b3960` |
-| Accent (UI) | violet | `#9d78d8` |
+A deep-void Neovim colorscheme. Pure black background, warm gold strings. Heavily inspired by rose-pine moon. 
 
 ## Installation
 
