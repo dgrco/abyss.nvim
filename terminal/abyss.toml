@@ -1,77 +1,71 @@
-# abyss — Alacritty theme
-# Place in ~/.config/alacritty/themes/abyss.toml
-# Then add to your alacritty.toml:
-#   [general]
-#   import = ["~/.config/alacritty/themes/abyss.toml"]
-
 [colors.primary]
 background = "#000000"
 foreground = "#faf4ed"
-dim_foreground = "#6b6894"
-bright_foreground = "#e0deff"
+dim_foreground = "#6e6a86"
+bright_foreground = "#e0def4"
 
 [colors.cursor]
-text   = "#faf4ed"
-cursor = "#c5c2e8"
+text   = "#000000"
+cursor = "#908caa"
 
 [colors.vi_mode_cursor]
-text   = "#0a0a0f"
-cursor = "#9ccfd8"
+text   = "#000000"
+cursor = "#3e8fb0"
 
 [colors.search.matches]
-foreground = "#c5c2e8"
-background = "#2a1f4a"
+foreground = "#e0def4"
+background = "#2a283e"
 
 [colors.search.focused_match]
-foreground = "#0a0a0f"
-background = "#9088b8"
+foreground = "#000000"
+background = "#908caa"
 
 [colors.hints.start]
-foreground = "#0a0a0f"
-background = "#ea9a97"
+foreground = "#000000"
+background = "#f6c177"
 
 [colors.hints.end]
-foreground = "#0a0a0f"
-background = "#5dd6c0"
+foreground = "#000000"
+background = "#9ccfd8"
 
 [colors.line_indicator]
 foreground = "None"
 background = "None"
 
 [colors.footer_bar]
-foreground = "#0a0a0f"
-background = "#9088b8"
+foreground = "#000000"
+background = "#908caa"
 
 [colors.selection]
 text       = "CellForeground"
-background = "#221e38"
+background = "#2a283e"
 
 [colors.normal]
 black   = "#000000"
 red     = "#eb6f92"
 green   = "#6ed48a"
-yellow  = "#d4a84b"
-blue    = "#9ccfd8"
+yellow  = "#f6c177"
+blue    = "#3e8fb0"
 magenta = "#c4a7e7"
-cyan    = "#5dd6c0"
-white   = "#faf4ed"
+cyan    = "#9ccfd8"
+white   = "#e0def4"
 
 [colors.bright]
-black   = "#3b3960"
-red     = "#f087a8"
+black   = "#6e6a86"
+red     = "#eb6f92"
 green   = "#90e4a8"
-yellow  = "#e8c070"
-blue    = "#b8e4ee"
-magenta = "#d8c0f8"
-cyan    = "#80e8d8"
-white   = "#e0deff"
+yellow  = "#f6c177"
+blue    = "#3e8fb0"
+magenta = "#c4a7e7"
+cyan    = "#9ccfd8"
+white   = "#faf4ed"
 
 [colors.dim]
 black   = "#0d0d14"
 red     = "#a84d68"
 green   = "#4ea068"
-yellow  = "#a07830"
-blue    = "#6090a8"
+yellow  = "#b08830"
+blue    = "#2a6880"
 magenta = "#8068b0"
-cyan    = "#40a090"
-white   = "#9996cc"
+cyan    = "#5090a0"
+white   = "#6e6a86"

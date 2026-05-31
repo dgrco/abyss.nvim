@@ -1,6 +1,3 @@
--- abyss.nvim — highlights.lua
--- Full highlight definitions: core Vim, Treesitter, LSP, and all major plugins.
-
 local M = {}
 
 ---@param groups table<string, table>
@@ -16,7 +13,6 @@ function M.apply(c, opts)
   local italic = opts.italic_comments and "italic" or nil
   local bold   = opts.bold_keywords   and "bold"   or nil
 
-  -- ─── Editor Core ───────────────────────────────────────────────────────────
   set({
     Normal          = { fg = c.fg,        bg = c.bg },
     NormalFloat     = { fg = c.fg,        bg = c.bg2 },
@@ -57,8 +53,8 @@ function M.apply(c, opts)
     PmenuSel        = { fg = c.fg,        bg = c.selection },
     PmenuSbar       = { bg = c.bg3 },
     PmenuThumb      = { bg = c.accent },
-    PmenuKind       = { fg = c.type_,     bg = c.bg2 },
-    PmenuKindSel    = { fg = c.type_,     bg = c.selection },
+    PmenuKind       = { fg = c.foam,      bg = c.bg2 },
+    PmenuKindSel    = { fg = c.foam,      bg = c.selection },
     PmenuExtra      = { fg = c.fg2,       bg = c.bg2 },
     PmenuExtraSel   = { fg = c.fg1,       bg = c.selection },
 
@@ -80,7 +76,7 @@ function M.apply(c, opts)
     SpecialKey      = { fg = c.bg5 },
 
     WildMenu        = { fg = c.fg,        bg = c.match_cur },
-    QuickFixLine    = { fg = c.fn,        bold = true },
+    QuickFixLine    = { fg = c.rose,      bold = true },
 
     MsgArea         = { fg = c.fg1 },
     MsgSeparator    = { fg = c.bg4 },
@@ -94,43 +90,42 @@ function M.apply(c, opts)
     SpellLocal      = { undercurl = true, sp = c.info },
     SpellRare       = { undercurl = true, sp = c.hint },
 
-    -- ─── Syntax (classic) ─────────────────────────────────────────────────
     Comment         = { fg = c.fg3,       italic = italic },
     SpecialComment  = { fg = c.fg3,       italic = italic },
 
-    Constant        = { fg = c.constant },
+    Constant        = { fg = c.foam },
     String          = { fg = c.string_ },
     Character       = { fg = c.string_ },
-    Number          = { fg = c.number },
-    Boolean         = { fg = c.number },
-    Float           = { fg = c.number },
+    Number          = { fg = c.gold },
+    Boolean         = { fg = c.gold },
+    Float           = { fg = c.gold },
 
-    Identifier      = { fg = c.variable },
-    Function        = { fg = c.fn },
+    Identifier      = { fg = c.fg },
+    Function        = { fg = c.rose },
 
-    Statement       = { fg = c.keyword,   bold = bold },
-    Conditional     = { fg = c.keyword,   bold = bold },
-    Repeat          = { fg = c.keyword,   bold = bold },
-    Label           = { fg = c.keyword },
-    Operator        = { fg = c.operator },
-    Keyword         = { fg = c.keyword,   bold = bold },
-    Exception       = { fg = c.keyword },
+    Statement       = { fg = c.pine,      bold = bold },
+    Conditional     = { fg = c.pine,      bold = bold },
+    Repeat          = { fg = c.pine,      bold = bold },
+    Label           = { fg = c.pine },
+    Operator        = { fg = c.subtle },
+    Keyword         = { fg = c.pine,      bold = bold },
+    Exception       = { fg = c.pine },
 
-    PreProc         = { fg = c.macro },
-    Include         = { fg = c.macro },
-    Define          = { fg = c.macro },
-    Macro           = { fg = c.macro },
-    PreCondit       = { fg = c.macro },
+    PreProc         = { fg = c.iris },
+    Include         = { fg = c.pine },
+    Define          = { fg = c.iris },
+    Macro           = { fg = c.iris },
+    PreCondit       = { fg = c.iris },
 
-    Type            = { fg = c.type_ },
-    StorageClass    = { fg = c.keyword },
-    Structure       = { fg = c.type_ },
-    Typedef         = { fg = c.type_ },
+    Type            = { fg = c.foam },
+    StorageClass    = { fg = c.pine },
+    Structure       = { fg = c.foam },
+    Typedef         = { fg = c.foam },
 
-    Special         = { fg = c.special },
-    SpecialChar     = { fg = c.escape },
-    Tag             = { fg = c.attr },
-    Delimiter       = { fg = c.punct },
+    Special         = { fg = c.foam },
+    SpecialChar     = { fg = c.love },
+    Tag             = { fg = c.love },
+    Delimiter       = { fg = c.subtle },
 
     Bold            = { bold = true },
     Italic          = { italic = true },
@@ -140,99 +135,97 @@ function M.apply(c, opts)
     Todo            = { fg = c.bg,        bg = c.warn, bold = true },
   })
 
-  -- ─── Treesitter ────────────────────────────────────────────────────────────
   set({
-    ["@comment"]                    = { fg = c.fg3,     italic = italic },
-    ["@comment.documentation"]      = { fg = c.fg2,     italic = italic },
-    ["@comment.todo"]               = { fg = c.bg,      bg = c.warn, bold = true },
-    ["@comment.note"]               = { fg = c.bg,      bg = c.hint, bold = true },
-    ["@comment.warning"]            = { fg = c.bg,      bg = c.warn, bold = true },
-    ["@comment.error"]              = { fg = c.bg,      bg = c.error_, bold = true },
+    ["@comment"]                    = { fg = c.fg3,      italic = italic },
+    ["@comment.documentation"]      = { fg = c.fg2,      italic = italic },
+    ["@comment.todo"]               = { fg = c.bg,       bg = c.warn,   bold = true },
+    ["@comment.note"]               = { fg = c.bg,       bg = c.hint,   bold = true },
+    ["@comment.warning"]            = { fg = c.bg,       bg = c.warn,   bold = true },
+    ["@comment.error"]              = { fg = c.bg,       bg = c.error_, bold = true },
 
-    ["@keyword"]                    = { fg = c.keyword, bold = bold },
-    ["@keyword.function"]           = { fg = c.keyword, bold = bold },
-    ["@keyword.operator"]           = { fg = c.keyword },
-    ["@keyword.return"]             = { fg = c.keyword, bold = bold },
-    ["@keyword.import"]             = { fg = c.macro },
-    ["@keyword.conditional"]        = { fg = c.keyword, bold = bold },
-    ["@keyword.conditional.ternary"]= { fg = c.operator },
-    ["@keyword.repeat"]             = { fg = c.keyword },
-    ["@keyword.exception"]          = { fg = c.keyword },
-    ["@keyword.modifier"]           = { fg = c.keyword },
-    ["@keyword.type"]               = { fg = c.keyword },
-    ["@keyword.coroutine"]          = { fg = c.keyword },
-    ["@keyword.directive"]          = { fg = c.macro },
-    ["@keyword.directive.define"]   = { fg = c.macro },
+    ["@keyword"]                    = { fg = c.pine,     bold = bold },
+    ["@keyword.function"]           = { fg = c.pine,     bold = bold },
+    ["@keyword.operator"]           = { fg = c.pine },
+    ["@keyword.return"]             = { fg = c.pine,     bold = bold },
+    ["@keyword.import"]             = { fg = c.pine },
+    ["@keyword.conditional"]        = { fg = c.pine,     bold = bold },
+    ["@keyword.conditional.ternary"]= { fg = c.subtle },
+    ["@keyword.repeat"]             = { fg = c.pine },
+    ["@keyword.exception"]          = { fg = c.pine },
+    ["@keyword.modifier"]           = { fg = c.pine },
+    ["@keyword.type"]               = { fg = c.pine },
+    ["@keyword.coroutine"]          = { fg = c.pine },
+    ["@keyword.directive"]          = { fg = c.iris },
+    ["@keyword.directive.define"]   = { fg = c.iris },
 
-    ["@variable"]                   = { fg = c.variable },
-    ["@variable.builtin"]           = { fg = c.accent2 },
-    ["@variable.parameter"]         = { fg = c.param },
-    ["@variable.parameter.builtin"] = { fg = c.accent2 },
-    ["@variable.member"]            = { fg = c.field },
+    ["@variable"]                   = { fg = c.fg },
+    ["@variable.builtin"]           = { fg = c.pine },
+    ["@variable.parameter"]         = { fg = c.rose },
+    ["@variable.parameter.builtin"] = { fg = c.pine },
+    ["@variable.member"]            = { fg = c.foam },
 
-    ["@function"]                   = { fg = c.fn },
-    ["@function.builtin"]           = { fg = c.accent2 },
-    ["@function.call"]              = { fg = c.fn },
-    ["@function.macro"]             = { fg = c.macro },
-    ["@function.method"]            = { fg = c.fn },
-    ["@function.method.call"]       = { fg = c.fn },
+    ["@function"]                   = { fg = c.rose },
+    ["@function.builtin"]           = { fg = c.pine },
+    ["@function.call"]              = { fg = c.rose },
+    ["@function.macro"]             = { fg = c.iris },
+    ["@function.method"]            = { fg = c.rose },
+    ["@function.method.call"]       = { fg = c.rose },
 
-    ["@constructor"]                = { fg = c.type_ },
+    ["@constructor"]                = { fg = c.foam },
 
-    ["@type"]                       = { fg = c.type_ },
-    ["@type.builtin"]               = { fg = c.type_ },
-    ["@type.definition"]            = { fg = c.type_ },
-    ["@type.qualifier"]             = { fg = c.keyword },
+    ["@type"]                       = { fg = c.foam },
+    ["@type.builtin"]               = { fg = c.foam },
+    ["@type.definition"]            = { fg = c.foam },
+    ["@type.qualifier"]             = { fg = c.pine },
 
     ["@string"]                     = { fg = c.string_ },
-    ["@string.documentation"]       = { fg = c.string2, italic = italic },
-    ["@string.regexp"]              = { fg = c.regexp },
-    ["@string.escape"]              = { fg = c.escape },
-    ["@string.special"]             = { fg = c.escape },
-    ["@string.special.symbol"]      = { fg = c.attr },
-    ["@string.special.url"]         = { fg = c.info, underline = true },
+    ["@string.documentation"]       = { fg = c.string2,  italic = italic },
+    ["@string.regexp"]              = { fg = c.string_ },
+    ["@string.escape"]              = { fg = c.love },
+    ["@string.special"]             = { fg = c.love },
+    ["@string.special.symbol"]      = { fg = c.love },
+    ["@string.special.url"]         = { fg = c.info,     underline = true },
     ["@string.special.path"]        = { fg = c.info },
 
     ["@character"]                  = { fg = c.string_ },
-    ["@character.special"]          = { fg = c.escape },
+    ["@character.special"]          = { fg = c.love },
 
-    ["@number"]                     = { fg = c.number },
-    ["@number.float"]               = { fg = c.number },
-    ["@boolean"]                    = { fg = c.number, bold = bold },
+    ["@number"]                     = { fg = c.gold },
+    ["@number.float"]               = { fg = c.gold },
+    ["@boolean"]                    = { fg = c.gold,     bold = bold },
 
-    ["@constant"]                   = { fg = c.constant },
-    ["@constant.builtin"]           = { fg = c.number },
-    ["@constant.macro"]             = { fg = c.macro },
+    ["@constant"]                   = { fg = c.foam },
+    ["@constant.builtin"]           = { fg = c.gold },
+    ["@constant.macro"]             = { fg = c.iris },
 
-    ["@operator"]                   = { fg = c.operator },
-    ["@punctuation.bracket"]        = { fg = c.punct },
-    ["@punctuation.delimiter"]      = { fg = c.fg2 },
-    ["@punctuation.special"]        = { fg = c.punct },
+    ["@operator"]                   = { fg = c.subtle },
+    ["@punctuation.bracket"]        = { fg = c.subtle },
+    ["@punctuation.delimiter"]      = { fg = c.muted },
+    ["@punctuation.special"]        = { fg = c.subtle },
 
-    ["@attribute"]                  = { fg = c.attr },
-    ["@attribute.builtin"]          = { fg = c.attr },
+    ["@attribute"]                  = { fg = c.love },
+    ["@attribute.builtin"]          = { fg = c.love },
 
-    ["@namespace"]                  = { fg = c.namespace },
-    ["@module"]                     = { fg = c.namespace },
-    ["@module.builtin"]             = { fg = c.accent2 },
+    ["@namespace"]                  = { fg = c.pine },
+    ["@module"]                     = { fg = c.pine },
+    ["@module.builtin"]             = { fg = c.pine },
 
-    ["@label"]                      = { fg = c.attr },
+    ["@label"]                      = { fg = c.love },
 
-    -- Markup (markdown, rst, etc.)
-    ["@markup.heading.1"]           = { fg = c.accent,   bold = true },
-    ["@markup.heading.2"]           = { fg = c.fn,       bold = true },
-    ["@markup.heading.3"]           = { fg = c.type_,    bold = true },
-    ["@markup.heading.4"]           = { fg = c.string_,  bold = true },
-    ["@markup.heading.5"]           = { fg = c.number,   bold = true },
+    ["@markup.heading.1"]           = { fg = c.iris,     bold = true },
+    ["@markup.heading.2"]           = { fg = c.foam,     bold = true },
+    ["@markup.heading.3"]           = { fg = c.rose,     bold = true },
+    ["@markup.heading.4"]           = { fg = c.gold,     bold = true },
+    ["@markup.heading.5"]           = { fg = c.pine,     bold = true },
     ["@markup.heading.6"]           = { fg = c.fg1,      bold = true },
     ["@markup.raw"]                 = { fg = c.string_,  bg = c.bg3 },
     ["@markup.raw.block"]           = { fg = c.string_ },
     ["@markup.quote"]               = { fg = c.fg2,      italic = true },
-    ["@markup.math"]                = { fg = c.number },
+    ["@markup.math"]                = { fg = c.gold },
     ["@markup.link"]                = { fg = c.info,     underline = true },
     ["@markup.link.url"]            = { fg = c.info,     underline = true },
-    ["@markup.link.label"]          = { fg = c.accent2 },
-    ["@markup.list"]                = { fg = c.accent },
+    ["@markup.link.label"]          = { fg = c.pine },
+    ["@markup.list"]                = { fg = c.subtle },
     ["@markup.list.checked"]        = { fg = c.ok },
     ["@markup.list.unchecked"]      = { fg = c.fg2 },
     ["@markup.strong"]              = { bold = true },
@@ -240,19 +233,16 @@ function M.apply(c, opts)
     ["@markup.strikethrough"]       = { strikethrough = true },
     ["@markup.underline"]           = { underline = true },
 
-    -- HTML/JSX tags
-    ["@tag"]                        = { fg = c.attr },
-    ["@tag.attribute"]              = { fg = c.field },
-    ["@tag.builtin"]                = { fg = c.keyword },
-    ["@tag.delimiter"]              = { fg = c.fg2 },
+    ["@tag"]                        = { fg = c.love },
+    ["@tag.attribute"]              = { fg = c.foam },
+    ["@tag.builtin"]                = { fg = c.pine },
+    ["@tag.delimiter"]              = { fg = c.subtle },
 
-    -- Diff
     ["@diff.plus"]                  = { fg = c.git_add },
     ["@diff.minus"]                 = { fg = c.git_delete },
     ["@diff.delta"]                 = { fg = c.git_change },
   })
 
-  -- ─── LSP Semantic Tokens ───────────────────────────────────────────────────
   set({
     ["@lsp.type.class"]          = { link = "@type" },
     ["@lsp.type.comment"]        = { link = "@comment" },
@@ -261,7 +251,7 @@ function M.apply(c, opts)
     ["@lsp.type.enumMember"]     = { link = "@constant" },
     ["@lsp.type.event"]          = { link = "@variable.member" },
     ["@lsp.type.function"]       = { link = "@function" },
-    ["@lsp.type.interface"]      = { fg = c.type_ },
+    ["@lsp.type.interface"]      = { fg = c.foam },
     ["@lsp.type.keyword"]        = { link = "@keyword" },
     ["@lsp.type.macro"]          = { link = "@constant.macro" },
     ["@lsp.type.method"]         = { link = "@function.method" },
@@ -275,15 +265,14 @@ function M.apply(c, opts)
     ["@lsp.type.string"]         = { link = "@string" },
     ["@lsp.type.struct"]         = { link = "@type" },
     ["@lsp.type.type"]           = { link = "@type" },
-    ["@lsp.type.typeParameter"]  = { fg = c.type_ },
+    ["@lsp.type.typeParameter"]  = { fg = c.foam },
     ["@lsp.type.variable"]       = { link = "@variable" },
     ["@lsp.mod.deprecated"]      = { strikethrough = true },
-    ["@lsp.mod.readonly"]        = { fg = c.constant },
+    ["@lsp.mod.readonly"]        = { fg = c.foam },
     ["@lsp.mod.static"]          = { italic = true },
-    ["@lsp.mod.defaultLibrary"]  = { fg = c.accent2 },
+    ["@lsp.mod.defaultLibrary"]  = { fg = c.pine },
   })
 
-  -- ─── LSP Diagnostics ───────────────────────────────────────────────────────
   set({
     DiagnosticError            = { fg = c.error_ },
     DiagnosticWarn             = { fg = c.warn },
@@ -312,13 +301,12 @@ function M.apply(c, opts)
     LspReferenceText           = { bg = c.bg3 },
     LspReferenceRead           = { bg = c.bg3 },
     LspReferenceWrite          = { bg = c.bg3, underline = true },
-    LspSignatureActiveParameter= { fg = c.param, underline = true },
+    LspSignatureActiveParameter= { fg = c.rose, underline = true },
     LspCodeLens                = { fg = c.fg3, italic = true },
     LspCodeLensSeparator       = { fg = c.bg4 },
     LspInlayHint               = { fg = c.fg3, bg = c.bg1, italic = true },
   })
 
-  -- ─── Diff ─────────────────────────────────────────────────────────────────
   set({
     DiffAdd    = { fg = c.git_add,    bg = "#0d1f14" },
     DiffChange = { fg = c.git_change, bg = "#1c1708" },
@@ -333,7 +321,6 @@ function M.apply(c, opts)
     diffLine   = { fg = c.fg3 },
   })
 
-  -- ─── GitSigns ─────────────────────────────────────────────────────────────
   set({
     GitSignsAdd            = { fg = c.git_add },
     GitSignsChange         = { fg = c.git_change },
@@ -353,7 +340,6 @@ function M.apply(c, opts)
     GitSignsChangeInline   = { fg = c.bg, bg = c.git_change },
   })
 
-  -- ─── blink.cmp ────────────────────────────────────────────────────────────
   set({
     BlinkCmpMenu           = { fg = c.fg,    bg = c.bg2 },
     BlinkCmpMenuBorder     = { fg = c.bg4,   bg = c.bg2 },
@@ -369,30 +355,30 @@ function M.apply(c, opts)
 
     BlinkCmpKind           = { fg = c.accent },
     BlinkCmpKindText       = { fg = c.fg2 },
-    BlinkCmpKindMethod     = { fg = c.fn },
-    BlinkCmpKindFunction   = { fg = c.fn },
-    BlinkCmpKindConstructor= { fg = c.type_ },
-    BlinkCmpKindField      = { fg = c.field },
-    BlinkCmpKindVariable   = { fg = c.variable },
-    BlinkCmpKindClass      = { fg = c.type_ },
-    BlinkCmpKindInterface  = { fg = c.type_ },
-    BlinkCmpKindModule     = { fg = c.namespace },
-    BlinkCmpKindProperty   = { fg = c.field },
-    BlinkCmpKindUnit       = { fg = c.number },
-    BlinkCmpKindValue      = { fg = c.number },
-    BlinkCmpKindEnum       = { fg = c.type_ },
-    BlinkCmpKindKeyword    = { fg = c.keyword },
+    BlinkCmpKindMethod     = { fg = c.rose },
+    BlinkCmpKindFunction   = { fg = c.rose },
+    BlinkCmpKindConstructor= { fg = c.foam },
+    BlinkCmpKindField      = { fg = c.foam },
+    BlinkCmpKindVariable   = { fg = c.fg },
+    BlinkCmpKindClass      = { fg = c.foam },
+    BlinkCmpKindInterface  = { fg = c.foam },
+    BlinkCmpKindModule     = { fg = c.pine },
+    BlinkCmpKindProperty   = { fg = c.foam },
+    BlinkCmpKindUnit       = { fg = c.gold },
+    BlinkCmpKindValue      = { fg = c.gold },
+    BlinkCmpKindEnum       = { fg = c.foam },
+    BlinkCmpKindKeyword    = { fg = c.pine },
     BlinkCmpKindSnippet    = { fg = c.string_ },
-    BlinkCmpKindColor      = { fg = c.attr },
+    BlinkCmpKindColor      = { fg = c.love },
     BlinkCmpKindFile       = { fg = c.info },
-    BlinkCmpKindReference  = { fg = c.constant },
+    BlinkCmpKindReference  = { fg = c.foam },
     BlinkCmpKindFolder     = { fg = c.info },
-    BlinkCmpKindEnumMember = { fg = c.constant },
-    BlinkCmpKindConstant   = { fg = c.constant },
-    BlinkCmpKindStruct     = { fg = c.type_ },
-    BlinkCmpKindEvent      = { fg = c.attr },
-    BlinkCmpKindOperator   = { fg = c.operator },
-    BlinkCmpKindTypeParameter = { fg = c.type_ },
+    BlinkCmpKindEnumMember = { fg = c.foam },
+    BlinkCmpKindConstant   = { fg = c.foam },
+    BlinkCmpKindStruct     = { fg = c.foam },
+    BlinkCmpKindEvent      = { fg = c.love },
+    BlinkCmpKindOperator   = { fg = c.subtle },
+    BlinkCmpKindTypeParameter = { fg = c.foam },
 
     BlinkCmpDoc            = { fg = c.fg,    bg = c.bg2 },
     BlinkCmpDocBorder      = { fg = c.bg4,   bg = c.bg2 },
@@ -401,12 +387,11 @@ function M.apply(c, opts)
 
     BlinkCmpSignatureHelp       = { fg = c.fg,   bg = c.bg2 },
     BlinkCmpSignatureHelpBorder = { fg = c.bg4,  bg = c.bg2 },
-    BlinkCmpSignatureHelpActiveParameter = { fg = c.param, underline = true },
+    BlinkCmpSignatureHelpActiveParameter = { fg = c.rose, underline = true },
 
     BlinkCmpGhostText      = { fg = c.fg4 },
   })
 
-  -- ─── nvim-cmp (fallback) ──────────────────────────────────────────────────
   set({
     CmpItemAbbr           = { fg = c.fg },
     CmpItemAbbrDeprecated = { fg = c.fg3, strikethrough = true },
@@ -442,43 +427,41 @@ function M.apply(c, opts)
     CmpItemKindCopilot    = { fg = c.ok },
   })
 
-  -- ─── fzf-lua ──────────────────────────────────────────────────────────────
   set({
     FzfLuaNormal        = { fg = c.fg,      bg = c.bg2 },
     FzfLuaBorder        = { fg = c.bg4,     bg = c.bg2 },
     FzfLuaTitle         = { fg = c.accent,  bg = c.bg2, bold = true },
     FzfLuaPreviewNormal = { fg = c.fg,      bg = c.bg },
     FzfLuaPreviewBorder = { fg = c.bg4,     bg = c.bg },
-    FzfLuaPreviewTitle  = { fg = c.fn,      bg = c.bg },
+    FzfLuaPreviewTitle  = { fg = c.rose,    bg = c.bg },
     FzfLuaScrollFloat   = { fg = c.bg4 },
     FzfLuaScrollChars   = { fg = c.accent },
-    FzfLuaHeaderBind    = { fg = c.type_ },
+    FzfLuaHeaderBind    = { fg = c.foam },
     FzfLuaHeaderText    = { fg = c.fg1 },
-    FzfLuaPathColNr     = { fg = c.number,  bold = true },
-    FzfLuaPathLineNr    = { fg = c.fn,      bold = true },
+    FzfLuaPathColNr     = { fg = c.gold,    bold = true },
+    FzfLuaPathLineNr    = { fg = c.rose,    bold = true },
     FzfLuaBufName       = { fg = c.info },
-    FzfLuaBufNr         = { fg = c.number },
+    FzfLuaBufNr         = { fg = c.gold },
     FzfLuaBufFlagCur    = { fg = c.accent2 },
     FzfLuaBufFlagAlt    = { fg = c.fg2 },
-    FzfLuaTabTitle      = { fg = c.fn },
+    FzfLuaTabTitle      = { fg = c.rose },
     FzfLuaTabMarker     = { fg = c.accent2 },
     FzfLuaDirIcon       = { fg = c.info },
-    FzfLuaLiveSym       = { fg = c.attr },
+    FzfLuaLiveSym       = { fg = c.love },
   })
 
-  -- ─── Telescope ────────────────────────────────────────────────────────────
   set({
     TelescopeNormal         = { fg = c.fg,     bg = c.bg2 },
     TelescopeBorder         = { fg = c.bg4,    bg = c.bg2 },
     TelescopeTitle          = { fg = c.accent, bg = c.bg2, bold = true },
     TelescopePromptNormal   = { fg = c.fg,     bg = c.bg3 },
     TelescopePromptBorder   = { fg = c.bg5,    bg = c.bg3 },
-    TelescopePromptTitle    = { fg = c.fn,     bg = c.bg3, bold = true },
+    TelescopePromptTitle    = { fg = c.rose,   bg = c.bg3, bold = true },
     TelescopePromptPrefix   = { fg = c.accent2 },
     TelescopePromptCounter  = { fg = c.fg3 },
     TelescopePreviewNormal  = { fg = c.fg,     bg = c.bg },
     TelescopePreviewBorder  = { fg = c.bg4,    bg = c.bg },
-    TelescopePreviewTitle   = { fg = c.type_,  bg = c.bg, bold = true },
+    TelescopePreviewTitle   = { fg = c.foam,   bg = c.bg, bold = true },
     TelescopeResultsNormal  = { fg = c.fg,     bg = c.bg2 },
     TelescopeResultsBorder  = { fg = c.bg4,    bg = c.bg2 },
     TelescopeResultsTitle   = { fg = c.fg3,    bg = c.bg2 },
@@ -489,11 +472,10 @@ function M.apply(c, opts)
     TelescopeMatching       = { fg = c.accent2, bold = true },
     TelescopeSelection      = { fg = c.fg,     bg = c.selection },
     TelescopeSelectionCaret = { fg = c.accent2, bg = c.selection },
-    TelescopeMultiSelection = { fg = c.type_ },
+    TelescopeMultiSelection = { fg = c.foam },
     TelescopeMultiIcon      = { fg = c.accent },
   })
 
-  -- ─── Snacks.nvim ──────────────────────────────────────────────────────────
   set({
     SnacksNormal          = { fg = c.fg,      bg = c.bg2 },
     SnacksNormalNC        = { fg = c.fg1,     bg = c.bg2 },
@@ -509,9 +491,9 @@ function M.apply(c, opts)
     SnacksDashboardFooter = { fg = c.fg4 },
     SnacksDashboardHeader = { fg = c.accent },
     SnacksDashboardIcon   = { fg = c.accent2 },
-    SnacksDashboardKey    = { fg = c.type_,   bold = true },
-    SnacksDashboardTerminal = { fg = c.fn },
-    SnacksDashboardSpecial = { fg = c.attr },
+    SnacksDashboardKey    = { fg = c.foam,    bold = true },
+    SnacksDashboardTerminal = { fg = c.rose },
+    SnacksDashboardSpecial = { fg = c.love },
     SnacksDashboardTitle  = { fg = c.accent,  bold = true },
     SnacksIndent          = { fg = c.bg4 },
     SnacksIndentScope     = { fg = c.accent },
@@ -537,7 +519,6 @@ function M.apply(c, opts)
     SnacksPickerMatch     = { fg = c.accent2, bold = true },
   })
 
-  -- ─── neo-tree ─────────────────────────────────────────────────────────────
   set({
     NeoTreeNormal          = { fg = c.fg,     bg = c.bg1 },
     NeoTreeNormalNC        = { fg = c.fg1,    bg = c.bg1 },
@@ -553,9 +534,9 @@ function M.apply(c, opts)
     NeoTreeFileIcon        = { fg = c.info },
     NeoTreeFileStats       = { fg = c.fg3 },
     NeoTreeFileStatsHeader = { fg = c.fg2,    bold = true },
-    NeoTreeDirectoryName   = { fg = c.fn },
+    NeoTreeDirectoryName   = { fg = c.rose },
     NeoTreeDirectoryIcon   = { fg = c.info },
-    NeoTreeSymbolicLinkTarget = { fg = c.type_ },
+    NeoTreeSymbolicLinkTarget = { fg = c.foam },
     NeoTreeGitAdded        = { fg = c.git_add },
     NeoTreeGitConflict     = { fg = c.warn },
     NeoTreeGitDeleted      = { fg = c.git_delete },
@@ -577,7 +558,6 @@ function M.apply(c, opts)
     NeoTreeTabSeparatorInactive = { fg = c.bg4 },
   })
 
-  -- ─── nvim-tree ────────────────────────────────────────────────────────────
   set({
     NvimTreeNormal          = { fg = c.fg,     bg = c.bg1 },
     NvimTreeNormalFloat     = { fg = c.fg,     bg = c.bg2 },
@@ -591,37 +571,36 @@ function M.apply(c, opts)
     NvimTreeGitMerge        = { fg = c.warn },
     NvimTreeGitRenamed      = { fg = c.info },
     NvimTreeGitUntracked    = { fg = c.fg3 },
-    NvimTreeFolderName      = { fg = c.fn },
+    NvimTreeFolderName      = { fg = c.rose },
     NvimTreeOpenedFolderName= { fg = c.accent2 },
     NvimTreeEmptyFolderName = { fg = c.fg2 },
     NvimTreeFolderIcon      = { fg = c.info },
     NvimTreeFileIcon        = { fg = c.fg2 },
-    NvimTreeSpecialFile     = { fg = c.attr },
-    NvimTreeSymlink         = { fg = c.type_ },
+    NvimTreeSpecialFile     = { fg = c.love },
+    NvimTreeSymlink         = { fg = c.foam },
     NvimTreeExecFile        = { fg = c.ok },
     NvimTreeIndentMarker    = { fg = c.bg5 },
     NvimTreeBookmark        = { fg = c.string_ },
-    NvimTreeImageFile       = { fg = c.attr },
+    NvimTreeImageFile       = { fg = c.love },
     NvimTreeCursorLine      = { bg = c.bg3 },
     NvimTreeLiveFilterValue = { fg = c.string_ },
     NvimTreeLiveFilterPrefix= { fg = c.accent, bold = true },
   })
 
-  -- ─── which-key ────────────────────────────────────────────────────────────
   set({
     WhichKey          = { fg = c.accent2 },
     WhichKeyBorder    = { fg = c.bg4,   bg = c.bg2 },
     WhichKeyDesc      = { fg = c.fg },
     WhichKeyFloat     = { fg = c.fg,    bg = c.bg2 },
-    WhichKeyGroup     = { fg = c.type_, bold = true },
-    WhichKeyIcon      = { fg = c.attr },
+    WhichKeyGroup     = { fg = c.foam,  bold = true },
+    WhichKeyIcon      = { fg = c.love },
     WhichKeyIconAzure = { fg = c.info },
-    WhichKeyIconBlue  = { fg = c.fn },
+    WhichKeyIconBlue  = { fg = c.rose },
     WhichKeyIconCyan  = { fg = c.hint },
     WhichKeyIconGreen = { fg = c.ok },
     WhichKeyIconGrey  = { fg = c.fg2 },
     WhichKeyIconOrange= { fg = c.warn },
-    WhichKeyIconPurple= { fg = c.keyword },
+    WhichKeyIconPurple= { fg = c.pine },
     WhichKeyIconRed   = { fg = c.error_ },
     WhichKeyIconYellow= { fg = c.string_ },
     WhichKeyNormal    = { fg = c.fg,    bg = c.bg2 },
@@ -630,7 +609,6 @@ function M.apply(c, opts)
     WhichKeyValue     = { fg = c.string_ },
   })
 
-  -- ─── indent-blankline / ibl ───────────────────────────────────────────────
   set({
     IblIndent       = { fg = c.bg4,   nocombine = true },
     IblScope        = { fg = c.bg5,   nocombine = true },
@@ -642,15 +620,13 @@ function M.apply(c, opts)
     IndentBlanklineContextStart       = { underline = true, sp = c.accent },
   })
 
-  -- ─── Lualine (component colors) ───────────────────────────────────────────
-  -- Exposed as named highlight groups so lualine config can reference them.
   set({
     LualineNormalA  = { fg = c.bg,     bg = c.accent,  bold = true },
     LualineNormalB  = { fg = c.fg,     bg = c.bg3 },
     LualineNormalC  = { fg = c.fg1,    bg = c.bg1 },
-    LualineInsertA  = { fg = c.bg,     bg = c.fn,      bold = true },
+    LualineInsertA  = { fg = c.bg,     bg = c.rose,    bold = true },
     LualineInsertB  = { fg = c.fg,     bg = c.bg3 },
-    LualineVisualA  = { fg = c.bg,     bg = c.attr,    bold = true },
+    LualineVisualA  = { fg = c.bg,     bg = c.love,    bold = true },
     LualineVisualB  = { fg = c.fg,     bg = c.bg3 },
     LualineReplaceA = { fg = c.bg,     bg = c.error_,  bold = true },
     LualineReplaceB = { fg = c.fg,     bg = c.bg3 },
@@ -659,7 +635,6 @@ function M.apply(c, opts)
     LualineInactive = { fg = c.fg3,    bg = c.bg1 },
   })
 
-  -- ─── Bufferline ───────────────────────────────────────────────────────────
   set({
     BufferLineBackground     = { fg = c.fg2,    bg = c.bg1 },
     BufferLineBuffer         = { fg = c.fg2,    bg = c.bg1 },
@@ -698,24 +673,23 @@ function M.apply(c, opts)
     BufferLineNumbers        = { fg = c.fg3,    bg = c.bg1 },
     BufferLineNumbersSelected = { fg = c.accent, bg = c.bg, bold = true },
     BufferLineNumbersVisible  = { fg = c.fg2,   bg = c.bg },
-    BufferLinePick           = { fg = c.attr,   bg = c.bg1, bold = true },
-    BufferLinePickSelected   = { fg = c.attr,   bg = c.bg,  bold = true },
-    BufferLinePickVisible    = { fg = c.attr,   bg = c.bg },
+    BufferLinePick           = { fg = c.love,   bg = c.bg1, bold = true },
+    BufferLinePickSelected   = { fg = c.love,   bg = c.bg,  bold = true },
+    BufferLinePickVisible    = { fg = c.love,   bg = c.bg },
     BufferLineGroupLabel     = { fg = c.bg,     bg = c.accent },
     BufferLineGroupSeparator = { fg = c.bg4,    bg = c.bg1 },
     BufferLineOffsetSeparator = { fg = c.bg4,   bg = c.bg },
     BufferLineTruncMarker    = { fg = c.fg3,    bg = c.bg1 },
   })
 
-  -- ─── mini.nvim ────────────────────────────────────────────────────────────
   set({
     MiniAnimateCursor       = { reverse = true, nocombine = true },
     MiniAnimateNormalFloat  = { link = "NormalFloat" },
     MiniClueBorder          = { link = "FloatBorder" },
-    MiniClueDescGroup       = { fg = c.type_, bold = true },
+    MiniClueDescGroup       = { fg = c.foam, bold = true },
     MiniClueDescSingle      = { fg = c.fg },
     MiniClueNextKey         = { fg = c.accent2, bold = true },
-    MiniClueNextKeyWithPostkeys = { fg = c.attr, bold = true },
+    MiniClueNextKeyWithPostkeys = { fg = c.love, bold = true },
     MiniClueSeparator       = { fg = c.fg3 },
     MiniClueTitle           = { link = "FloatTitle" },
     MiniCompletionActiveParameter = { underline = true },
@@ -741,7 +715,7 @@ function M.apply(c, opts)
     MiniFilesBorder         = { link = "FloatBorder" },
     MiniFilesBorderModified = { fg = c.git_change },
     MiniFilesCursorLine     = { bg = c.bg3 },
-    MiniFilesDirectory      = { fg = c.fn },
+    MiniFilesDirectory      = { fg = c.rose },
     MiniFilesFile           = { fg = c.fg },
     MiniFilesNormal         = { link = "NormalFloat" },
     MiniFilesTitle          = { link = "FloatTitle" },
@@ -749,27 +723,27 @@ function M.apply(c, opts)
     MiniHipatternsFixme     = { fg = c.bg, bg = c.error_, bold = true },
     MiniHipatternsHack      = { fg = c.bg, bg = c.warn,   bold = true },
     MiniHipatternsNote      = { fg = c.bg, bg = c.hint,   bold = true },
-    MiniHipatternsTodo      = { fg = c.bg, bg = c.type_,  bold = true },
+    MiniHipatternsTodo      = { fg = c.bg, bg = c.foam,   bold = true },
     MiniIconsAzure          = { fg = c.info },
-    MiniIconsBlue           = { fg = c.fn },
+    MiniIconsBlue           = { fg = c.rose },
     MiniIconsCyan           = { fg = c.hint },
     MiniIconsGreen          = { fg = c.ok },
     MiniIconsGrey           = { fg = c.fg2 },
     MiniIconsOrange         = { fg = c.warn },
-    MiniIconsPurple         = { fg = c.keyword },
+    MiniIconsPurple         = { fg = c.pine },
     MiniIconsRed            = { fg = c.error_ },
     MiniIconsYellow         = { fg = c.string_ },
     MiniIndentscopeSymbol   = { fg = c.accent },
     MiniIndentscopePrefix   = { nocombine = true },
     MiniJump                = { fg = c.bg, bg = c.accent2 },
     MiniJump2dDim           = { fg = c.fg4 },
-    MiniJump2dSpot          = { fg = c.attr, bold = true, nocombine = true },
-    MiniJump2dSpotAhead     = { fg = c.fn,   nocombine = true },
-    MiniJump2dSpotUnique    = { fg = c.type_, bold = true, nocombine = true },
+    MiniJump2dSpot          = { fg = c.love, bold = true, nocombine = true },
+    MiniJump2dSpotAhead     = { fg = c.rose, nocombine = true },
+    MiniJump2dSpotUnique    = { fg = c.foam, bold = true, nocombine = true },
     MiniMapNormal           = { link = "NormalFloat" },
     MiniMapSymbolCount      = { fg = c.fg3 },
     MiniMapSymbolLine       = { fg = c.accent },
-    MiniMapSymbolView       = { fg = c.type_ },
+    MiniMapSymbolView       = { fg = c.foam },
     MiniNotifyBorder        = { link = "FloatBorder" },
     MiniNotifyNormal        = { link = "NormalFloat" },
     MiniNotifyTitle         = { link = "FloatTitle" },
@@ -778,7 +752,7 @@ function M.apply(c, opts)
     MiniPickBorderBusy      = { fg = c.warn },
     MiniPickBorderText      = { fg = c.accent },
     MiniPickHeader          = { fg = c.accent2, bold = true },
-    MiniPickIconDirectory   = { fg = c.fn },
+    MiniPickIconDirectory   = { fg = c.rose },
     MiniPickIconFile        = { fg = c.fg2 },
     MiniPickMatchCurrent    = { bg = c.selection },
     MiniPickMatchMarked     = { bg = c.bg3 },
@@ -793,19 +767,19 @@ function M.apply(c, opts)
     MiniStarterInactive     = { fg = c.fg4 },
     MiniStarterItem         = { fg = c.fg },
     MiniStarterItemBullet   = { fg = c.accent },
-    MiniStarterItemPrefix   = { fg = c.attr },
-    MiniStarterQuery        = { fg = c.fn },
-    MiniStarterSection      = { fg = c.type_, bold = true },
+    MiniStarterItemPrefix   = { fg = c.love },
+    MiniStarterQuery        = { fg = c.rose },
+    MiniStarterSection      = { fg = c.foam, bold = true },
     MiniStatuslineDevinfo   = { fg = c.fg2,    bg = c.bg3 },
     MiniStatuslineFileinfo  = { fg = c.fg2,    bg = c.bg3 },
     MiniStatuslineFilename  = { fg = c.fg1,    bg = c.bg1 },
     MiniStatuslineInactive  = { fg = c.fg3,    bg = c.bg1 },
     MiniStatuslineModeCommand = { fg = c.bg,   bg = c.string_, bold = true },
-    MiniStatuslineModeInsert  = { fg = c.bg,   bg = c.fn,      bold = true },
+    MiniStatuslineModeInsert  = { fg = c.bg,   bg = c.rose,    bold = true },
     MiniStatuslineModeNormal  = { fg = c.bg,   bg = c.accent,  bold = true },
-    MiniStatuslineModeOther   = { fg = c.bg,   bg = c.type_,   bold = true },
+    MiniStatuslineModeOther   = { fg = c.bg,   bg = c.foam,    bold = true },
     MiniStatuslineModeReplace = { fg = c.bg,   bg = c.error_,  bold = true },
-    MiniStatuslineModeVisual  = { fg = c.bg,   bg = c.attr,    bold = true },
+    MiniStatuslineModeVisual  = { fg = c.bg,   bg = c.love,    bold = true },
     MiniSurround            = { fg = c.bg, bg = c.accent },
     MiniTablineCurrent      = { fg = c.fg,  bg = c.bg, bold = true },
     MiniTablineFill         = { bg = c.bg1 },
@@ -821,7 +795,6 @@ function M.apply(c, opts)
     MiniTrailspace          = { bg = c.error_ },
   })
 
-  -- ─── noice.nvim ───────────────────────────────────────────────────────────
   set({
     NoiceCmdline         = { fg = c.fg,     bg = c.bg2 },
     NoiceCmdlineIcon     = { fg = c.accent },
@@ -845,7 +818,7 @@ function M.apply(c, opts)
     NoiceFormatProgressTodo = { fg = c.fg3 },
     NoiceFormatTitle     = { fg = c.accent, bold = true },
     NoiceLspProgressClient = { fg = c.accent2 },
-    NoiceLspProgressSpinner = { fg = c.fn },
+    NoiceLspProgressSpinner = { fg = c.rose },
     NoiceLspProgressTitle  = { fg = c.fg1 },
     NoiceMini            = { fg = c.fg,     bg = c.bg2 },
     NoicePopup           = { fg = c.fg,     bg = c.bg2 },
@@ -857,7 +830,6 @@ function M.apply(c, opts)
     NoiceVirtualText     = { fg = c.fg3 },
   })
 
-  -- ─── nvim-notify ──────────────────────────────────────────────────────────
   set({
     NotifyBackground       = { bg = c.bg2 },
     NotifyERRORBorder      = { fg = c.error_, bg = c.bg2 },
@@ -882,7 +854,6 @@ function M.apply(c, opts)
     NotifyTRACEBody        = { fg = c.fg,     bg = c.bg2 },
   })
 
-  -- ─── nvim-dap / nvim-dap-ui ───────────────────────────────────────────────
   set({
     DapBreakpoint          = { fg = c.error_ },
     DapBreakpointCondition = { fg = c.warn },
@@ -893,31 +864,31 @@ function M.apply(c, opts)
     DapUIBreakpointsCurrentLine = { fg = c.ok, bold = true },
     DapUIBreakpointsDisabledLine = { fg = c.fg3 },
     DapUIBreakpointsInfo   = { fg = c.info },
-    DapUIBreakpointsLine   = { fg = c.number },
+    DapUIBreakpointsLine   = { fg = c.gold },
     DapUIBreakpointsPath   = { fg = c.info },
     DapUIDecoration        = { fg = c.bg4 },
     DapUIEndofBuffer       = { fg = c.bg1 },
     DapUIFloatBorder       = { fg = c.bg4 },
     DapUIFloatNormal       = { link = "NormalFloat" },
-    DapUIFrameName         = { fg = c.fn },
-    DapUILineNumber        = { fg = c.number },
+    DapUIFrameName         = { fg = c.rose },
+    DapUILineNumber        = { fg = c.gold },
     DapUIModifiedValue     = { fg = c.warn, bold = true },
     DapUINormalNC          = { fg = c.fg1 },
     DapUIPlayPause         = { fg = c.ok },
     DapUIRestart           = { fg = c.ok },
-    DapUIScope             = { fg = c.type_ },
-    DapUISource            = { fg = c.type_ },
-    DapUIStepBack          = { fg = c.fn },
-    DapUIStepInto          = { fg = c.fn },
-    DapUIStepOut           = { fg = c.fn },
-    DapUIStepOver          = { fg = c.fn },
+    DapUIScope             = { fg = c.foam },
+    DapUISource            = { fg = c.foam },
+    DapUIStepBack          = { fg = c.rose },
+    DapUIStepInto          = { fg = c.rose },
+    DapUIStepOut           = { fg = c.rose },
+    DapUIStepOver          = { fg = c.rose },
     DapUIStop              = { fg = c.error_ },
     DapUIStoppedThread     = { fg = c.accent },
     DapUIThread            = { fg = c.accent2 },
     DapUIType              = { link = "Type" },
     DapUIUnavailable       = { fg = c.fg3 },
     DapUIValue             = { fg = c.fg },
-    DapUIVariable          = { fg = c.variable },
+    DapUIVariable          = { fg = c.fg },
     DapUIWatchesEmpty      = { fg = c.error_ },
     DapUIWatchesError      = { fg = c.error_ },
     DapUIWatchesValue      = { fg = c.ok },
@@ -925,25 +896,24 @@ function M.apply(c, opts)
     DapVirtualText         = { fg = c.fg3, italic = true },
   })
 
-  -- ─── lazy.nvim ────────────────────────────────────────────────────────────
   set({
     LazyBold        = { bold = true },
     LazyButton      = { fg = c.fg,     bg = c.bg3 },
     LazyButtonActive= { fg = c.fg,     bg = c.selection, bold = true },
     LazyComment     = { fg = c.fg3 },
-    LazyCommit      = { fg = c.fn },
+    LazyCommit      = { fg = c.rose },
     LazyCommitBorder= { fg = c.bg4 },
-    LazyCommitIssue = { fg = c.number },
-    LazyCommitScope = { fg = c.type_,  italic = true },
-    LazyCommitType  = { fg = c.keyword, bold = true },
+    LazyCommitIssue = { fg = c.gold },
+    LazyCommitScope = { fg = c.foam,   italic = true },
+    LazyCommitType  = { fg = c.pine,   bold = true },
     LazyDimmed      = { fg = c.fg4 },
     LazyDir         = { fg = c.info },
     LazyError       = { fg = c.error_ },
     LazyH1          = { fg = c.bg,     bg = c.accent, bold = true },
     LazyH2          = { fg = c.accent, bold = true },
-    LazyHandlerCmd  = { fg = c.fn },
-    LazyHandlerEvent= { fg = c.attr },
-    LazyHandlerFt   = { fg = c.type_ },
+    LazyHandlerCmd  = { fg = c.rose },
+    LazyHandlerEvent= { fg = c.love },
+    LazyHandlerFt   = { fg = c.foam },
     LazyHandlerKeys = { fg = c.accent2 },
     LazyHandlerPlugin = { fg = c.accent },
     LazyHandlerRuntime = { fg = c.warn },
@@ -956,17 +926,17 @@ function M.apply(c, opts)
     LazyProgressDone = { fg = c.ok },
     LazyProgressTodo = { fg = c.fg3 },
     LazyProp        = { fg = c.fg2 },
-    LazyReasonCmd   = { fg = c.fn },
-    LazyReasonEvent = { fg = c.attr },
-    LazyReasonFt    = { fg = c.type_ },
+    LazyReasonCmd   = { fg = c.rose },
+    LazyReasonEvent = { fg = c.love },
+    LazyReasonFt    = { fg = c.foam },
     LazyReasonImport= { fg = c.accent },
     LazyReasonKeys  = { fg = c.accent2 },
     LazyReasonPlugin= { fg = c.accent },
-    LazyReasonRequire = { fg = c.keyword },
+    LazyReasonRequire = { fg = c.pine },
     LazyReasonRuntime = { fg = c.warn },
     LazyReasonSource= { fg = c.string_ },
     LazyReasonStart = { fg = c.ok },
-    LazySpecial     = { fg = c.attr },
+    LazySpecial     = { fg = c.love },
     LazyStatsHeader = { fg = c.accent, bold = true },
     LazyTaskError   = { fg = c.error_ },
     LazyTaskOutput  = { fg = c.fg2 },
@@ -976,18 +946,17 @@ function M.apply(c, opts)
     LazyWarning     = { fg = c.warn },
   })
 
-  -- ─── mason.nvim ───────────────────────────────────────────────────────────
   set({
     MasonError              = { fg = c.error_ },
     MasonHeader             = { fg = c.bg, bg = c.accent, bold = true },
-    MasonHeaderSecondary    = { fg = c.bg, bg = c.fn,     bold = true },
+    MasonHeaderSecondary    = { fg = c.bg, bg = c.rose,   bold = true },
     MasonHeading            = { fg = c.accent, bold = true },
-    MasonHighlight          = { fg = c.fn },
-    MasonHighlightBlock     = { fg = c.bg, bg = c.fn },
-    MasonHighlightBlockBold = { fg = c.bg, bg = c.fn, bold = true },
-    MasonHighlightBlockBoldSecondary = { fg = c.bg, bg = c.type_, bold = true },
-    MasonHighlightBlockSecondary     = { fg = c.bg, bg = c.type_ },
-    MasonHighlightSecondary = { fg = c.type_ },
+    MasonHighlight          = { fg = c.rose },
+    MasonHighlightBlock     = { fg = c.bg, bg = c.rose },
+    MasonHighlightBlockBold = { fg = c.bg, bg = c.rose, bold = true },
+    MasonHighlightBlockBoldSecondary = { fg = c.bg, bg = c.foam, bold = true },
+    MasonHighlightBlockSecondary     = { fg = c.bg, bg = c.foam },
+    MasonHighlightSecondary = { fg = c.foam },
     MasonLink               = { fg = c.info,   underline = true },
     MasonMuted              = { fg = c.fg3 },
     MasonMutedBlock         = { fg = c.fg3,    bg = c.bg3 },
@@ -996,7 +965,6 @@ function M.apply(c, opts)
     MasonWarning            = { fg = c.warn },
   })
 
-  -- ─── nvim-dap-virtual-text / nvim-treesitter-context ─────────────────────
   set({
     TreesitterContext            = { bg = c.bg1 },
     TreesitterContextLineNumber  = { fg = c.linenr, bg = c.bg1 },
@@ -1004,7 +972,6 @@ function M.apply(c, opts)
     TreesitterContextBottom      = { underline = true, sp = c.bg4 },
   })
 
-  -- ─── Aerial ───────────────────────────────────────────────────────────────
   set({
     AerialNormal    = { fg = c.fg,     bg = c.bg1 },
     AerialLine      = { bg = c.selection },
@@ -1013,69 +980,65 @@ function M.apply(c, opts)
     AerialClass     = { link = "Type" },
     AerialFunction  = { link = "Function" },
     AerialMethod    = { link = "Function" },
-    AerialField     = { fg = c.field },
-    AerialVariable  = { fg = c.variable },
+    AerialField     = { fg = c.foam },
+    AerialVariable  = { fg = c.fg },
     AerialConstant  = { link = "Constant" },
     AerialConstructor = { link = "@constructor" },
     AerialEnum      = { link = "Type" },
-    AerialInterface = { fg = c.type_ },
-    AerialModule    = { fg = c.namespace },
-    AerialNamespace = { fg = c.namespace },
-    AerialPackage   = { fg = c.namespace },
+    AerialInterface = { fg = c.foam },
+    AerialModule    = { fg = c.pine },
+    AerialNamespace = { fg = c.pine },
+    AerialPackage   = { fg = c.pine },
     AerialStruct    = { link = "Type" },
-    AerialKey       = { fg = c.field },
+    AerialKey       = { fg = c.foam },
     AerialString    = { link = "String" },
     AerialNumber    = { link = "Number" },
     AerialBoolean   = { link = "Boolean" },
-    AerialArray     = { fg = c.punct },
-    AerialObject    = { fg = c.type_ },
+    AerialArray     = { fg = c.subtle },
+    AerialObject    = { fg = c.foam },
     AerialOperator  = { link = "Operator" },
-    AerialTypeParameter = { fg = c.type_ },
+    AerialTypeParameter = { fg = c.foam },
   })
 
-  -- ─── nvim-surround / vim-surround ─────────────────────────────────────────
   set({
     SurroundHighlight  = { fg = c.bg, bg = c.accent },
     MatchWord          = { bold = true },
     MatchWordCur       = { bold = true },
   })
 
-  -- ─── flash.nvim ───────────────────────────────────────────────────────────
   set({
     FlashBackdrop  = { fg = c.fg4 },
-    FlashLabel     = { fg = c.bg, bg = c.attr,   bold = true },
+    FlashLabel     = { fg = c.bg, bg = c.love,   bold = true },
     FlashMatch     = { fg = c.accent2, bg = c.match },
     FlashCurrent   = { fg = c.bg, bg = c.accent2, bold = true },
     FlashCursor    = { reverse = true },
     FlashPrompt    = { fg = c.accent2, bold = true },
     FlashPromptIcon= { fg = c.accent },
-    FlashChar      = { fg = c.bg, bg = c.attr,   bold = true },
-    FlashCharHint  = { fg = c.bg, bg = c.type_,  bold = true },
+    FlashChar      = { fg = c.bg, bg = c.love,   bold = true },
+    FlashCharHint  = { fg = c.bg, bg = c.foam,   bold = true },
   })
 
-  -- ─── leap.nvim ────────────────────────────────────────────────────────────
   set({
     LeapMatch       = { fg = c.bg, bg = c.accent2 },
-    LeapLabelPrimary= { fg = c.bg, bg = c.attr, bold = true },
-    LeapLabelSecondary = { fg = c.bg, bg = c.type_ },
+    LeapLabelPrimary= { fg = c.bg, bg = c.love, bold = true },
+    LeapLabelSecondary = { fg = c.bg, bg = c.foam },
     LeapBackdrop    = { fg = c.fg4 },
   })
 
-  -- ─── todo-comments ────────────────────────────────────────────────────────
   set({
     TodoFgFIX   = { fg = c.error_ },
     TodoFgHACK  = { fg = c.warn },
     TodoFgNOTE  = { fg = c.hint },
-    TodoFgPERF  = { fg = c.fn },
-    TodoFgTEST  = { fg = c.attr },
-    TodoFgTODO  = { fg = c.type_ },
+    TodoFgPERF  = { fg = c.rose },
+    TodoFgTEST  = { fg = c.love },
+    TodoFgTODO  = { fg = c.foam },
     TodoFgWARN  = { fg = c.warn },
     TodoBgFIX   = { fg = c.bg, bg = c.error_, bold = true },
     TodoBgHACK  = { fg = c.bg, bg = c.warn,   bold = true },
     TodoBgNOTE  = { fg = c.bg, bg = c.hint,   bold = true },
-    TodoBgPERF  = { fg = c.bg, bg = c.fn,     bold = true },
-    TodoBgTEST  = { fg = c.bg, bg = c.attr,   bold = true },
-    TodoBgTODO  = { fg = c.bg, bg = c.type_,  bold = true },
+    TodoBgPERF  = { fg = c.bg, bg = c.rose,   bold = true },
+    TodoBgTEST  = { fg = c.bg, bg = c.love,   bold = true },
+    TodoBgTODO  = { fg = c.bg, bg = c.foam,   bold = true },
     TodoBgWARN  = { fg = c.bg, bg = c.warn,   bold = true },
     TodoSignFIX = { link = "TodoFgFIX" },
     TodoSignHACK= { link = "TodoFgHACK" },
@@ -1086,7 +1049,6 @@ function M.apply(c, opts)
     TodoSignWARN= { link = "TodoFgWARN" },
   })
 
-  -- ─── headlines.nvim ───────────────────────────────────────────────────────
   set({
     Headline1 = { bg = "#1a1530" },
     Headline2 = { bg = "#141f1c" },
@@ -1099,14 +1061,13 @@ function M.apply(c, opts)
     Dash      = { fg = c.bg5 },
   })
 
-  -- ─── render-markdown.nvim ─────────────────────────────────────────────────
   set({
-    RenderMarkdownH1        = { fg = c.accent,   bold = true },
-    RenderMarkdownH2        = { fg = c.fn,       bold = true },
-    RenderMarkdownH3        = { fg = c.type_,    bold = true },
-    RenderMarkdownH4        = { fg = c.string_,  bold = true },
-    RenderMarkdownH5        = { fg = c.number,   bold = true },
-    RenderMarkdownH6        = { fg = c.fg1,      bold = true },
+    RenderMarkdownH1        = { fg = c.iris,    bold = true },
+    RenderMarkdownH2        = { fg = c.foam,    bold = true },
+    RenderMarkdownH3        = { fg = c.rose,    bold = true },
+    RenderMarkdownH4        = { fg = c.gold,    bold = true },
+    RenderMarkdownH5        = { fg = c.pine,    bold = true },
+    RenderMarkdownH6        = { fg = c.fg1,     bold = true },
     RenderMarkdownH1Bg      = { bg = "#1a1530" },
     RenderMarkdownH2Bg      = { bg = "#141f1c" },
     RenderMarkdownH3Bg      = { bg = "#1a170d" },
@@ -1119,14 +1080,14 @@ function M.apply(c, opts)
     RenderMarkdownDash      = { fg = c.bg5 },
     RenderMarkdownLink      = { fg = c.info,     underline = true },
     RenderMarkdownWikiLink  = { fg = c.accent2,  underline = true },
-    RenderMarkdownMath      = { fg = c.number },
+    RenderMarkdownMath      = { fg = c.gold },
     RenderMarkdownQuote     = { fg = c.fg2,      italic = true },
     RenderMarkdownTableHead = { fg = c.accent,   bold = true },
     RenderMarkdownTableRow  = { fg = c.fg },
     RenderMarkdownTableFill = { fg = c.bg4 },
     RenderMarkdownChecked   = { fg = c.ok },
     RenderMarkdownUnchecked = { fg = c.fg3 },
-    RenderMarkdownTodo      = { fg = c.bg, bg = c.type_,  bold = true },
+    RenderMarkdownTodo      = { fg = c.bg, bg = c.foam,  bold = true },
     RenderMarkdownSuccess   = { fg = c.ok },
     RenderMarkdownInfo      = { fg = c.info },
     RenderMarkdownWarn      = { fg = c.warn },
@@ -1134,7 +1095,6 @@ function M.apply(c, opts)
     RenderMarkdownHint      = { fg = c.hint },
   })
 
-  -- ─── Trouble ──────────────────────────────────────────────────────────────
   set({
     TroubleNormal       = { fg = c.fg,    bg = c.bg1 },
     TroubleNormalNC     = { fg = c.fg1,   bg = c.bg1 },
@@ -1156,32 +1116,28 @@ function M.apply(c, opts)
     TroubleTextWarning  = { fg = c.warn },
     TroubleTextHint     = { fg = c.hint },
     TroubleTextInformation = { fg = c.info },
-    TroubleSource       = { fg = c.fn },
+    TroubleSource       = { fg = c.rose },
     TroubleIndent       = { fg = c.bg4 },
-    TroublePos          = { fg = c.number },
+    TroublePos          = { fg = c.gold },
     TroublePreview      = { bg = c.bg3 },
   })
 
-  -- ─── nvim-ufo (folding) ───────────────────────────────────────────────────
   set({
     UfoFoldedEllipsis = { fg = c.fg3 },
     UfoCursorFoldedLine = { bg = c.bg3, bold = true },
   })
 
-  -- ─── yanky.nvim ───────────────────────────────────────────────────────────
   set({
     YankyPut         = { fg = c.bg, bg = c.ok },
     YankyYanked      = { fg = c.bg, bg = c.string_ },
   })
 
-  -- ─── vim-illuminate ───────────────────────────────────────────────────────
   set({
     IlluminatedWordText  = { bg = c.bg3 },
     IlluminatedWordRead  = { bg = c.bg3 },
     IlluminatedWordWrite = { bg = c.bg3, underline = true },
   })
 
-  -- ─── nvim-scrollbar ───────────────────────────────────────────────────────
   set({
     ScrollbarHandle    = { bg = c.bg3 },
     ScrollbarCursor    = { fg = c.accent,  bg = c.bg3 },
@@ -1196,7 +1152,6 @@ function M.apply(c, opts)
     ScrollbarGitDelete = { fg = c.git_delete, bg = c.bg3 },
   })
 
-  -- ─── Terminal colors ──────────────────────────────────────────────────────
   local tc = c.term
   vim.g.terminal_color_0  = tc.black
   vim.g.terminal_color_1  = tc.red
