@@ -5,14 +5,14 @@
 #   import = ["~/.config/alacritty/themes/abyss.toml"]
 
 [colors.primary]
-background = "#0a0a0f"
-foreground = "#c5c2e8"
+background = "#000000"
+foreground = "#faf4ed"
 dim_foreground = "#6b6894"
 bright_foreground = "#e0deff"
 
 [colors.cursor]
-text   = "#0a0a0f"
-cursor = "#9d78d8"
+text   = "#faf4ed"
+cursor = "#c5c2e8"
 
 [colors.vi_mode_cursor]
 text   = "#0a0a0f"
@@ -47,14 +47,14 @@ text       = "CellForeground"
 background = "#221e38"
 
 [colors.normal]
-black   = "#0a0a0f"
+black   = "#000000"
 red     = "#f87ba8"
 green   = "#6ed48a"
 yellow  = "#d4a84b"
 blue    = "#7ed4f8"
 magenta = "#c888f0"
 cyan    = "#5dd6c0"
-white   = "#c5c2e8"
+white   = "#faf4ed"
 
 [colors.bright]
 black   = "#3b3960"

@@ -13,7 +13,7 @@ M.colors = {
   bg5        = "#1e1e30",   -- inactive / dimmed surfaces
 
   -- Non-text foregrounds
-  fg         = "#c5c2e8",   -- default text (soft lavender)
+  fg         = "#faf4ed",   -- default text (soft lavender)
   fg1        = "#9996cc",   -- secondary text
   fg2        = "#6b6894",   -- tertiary text
   fg3        = "#3b3960",   -- comments
