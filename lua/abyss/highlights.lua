@@ -160,7 +160,7 @@ function M.apply(c, opts)
 
     ["@variable"]                   = { fg = c.fg },
     ["@variable.builtin"]           = { fg = c.pine },
-    ["@variable.parameter"]         = { fg = c.rose },
+    ["@variable.parameter"]         = { fg = c.fg },
     ["@variable.parameter.builtin"] = { fg = c.pine },
     ["@variable.member"]            = { fg = c.foam },
 
