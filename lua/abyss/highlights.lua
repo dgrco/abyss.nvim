@@ -169,7 +169,7 @@ function M.apply(c, opts)
     ["@function.call"]              = { fg = c.rose },
     ["@function.macro"]             = { fg = c.iris },
     ["@function.method"]            = { fg = c.rose },
-    ["@function.method.call"]       = { fg = c.rose },
+    ["@function.method.call"]       = { fg = c.iris },
 
     ["@constructor"]                = { fg = c.foam },
 
