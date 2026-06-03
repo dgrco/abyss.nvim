@@ -44,7 +44,7 @@ vim.cmd("colorscheme abyss")
 
 ```lua
 require("abyss").setup({
-  italic_comments = true,
+  italic_comments = false,
   bold_keywords   = false,
   transparent     = false,   -- transparent background (for compositor blur etc.)
   terminal_colors = true,    -- set vim.g.terminal_color_* vars

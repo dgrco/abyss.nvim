@@ -5,7 +5,7 @@
 local M = {}
 
 ---@class AbyssConfig
----@field italic_comments boolean   default: true
+---@field italic_comments boolean   default: false
 ---@field bold_keywords   boolean   default: false
 ---@field transparent     boolean   default: false
 ---@field terminal_colors boolean   default: true

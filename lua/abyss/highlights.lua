@@ -279,7 +279,7 @@ function M.apply(c, opts)
     DiagnosticInfo             = { fg = c.info },
     DiagnosticHint             = { fg = c.hint },
     DiagnosticOk               = { fg = c.ok },
-    DiagnosticUnnecessary      = { fg = c.fg3, italic = true },
+    DiagnosticUnnecessary      = { fg = c.fg3, italic = italic },
     DiagnosticDeprecated       = { fg = c.fg3, strikethrough = true },
 
     DiagnosticVirtualTextError = { fg = c.error_, bg = c.bg1, italic = italic },
