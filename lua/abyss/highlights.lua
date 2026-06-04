@@ -207,8 +207,8 @@ function M.apply(c, opts)
     ["@attribute.builtin"]          = { fg = c.love },
 
     ["@namespace"]                  = { fg = c.pine },
-    ["@module"]                     = { fg = c.pine },
-    ["@module.builtin"]             = { fg = c.pine },
+    ["@module"]                     = { fg = c.fg },
+    ["@module.builtin"]             = { fg = c.fg },
 
     ["@label"]                      = { fg = c.love },
 
